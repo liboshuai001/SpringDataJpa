@@ -1,3 +1,4 @@
+import com.liboshuai001.config.SpringDataJpaConfig;
 import com.liboshuai001.constant.enums.CustLevelEnum;
 import com.liboshuai001.dao.CustomerDao;
 import com.liboshuai001.entity.CustomerEntity;
@@ -8,7 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+// @ContextConfiguration(locations = "classpath:applicationContext.xml")
+@ContextConfiguration(classes = SpringDataJpaConfig.class)
 public class SpringDataJapTest {
 
     @Autowired
