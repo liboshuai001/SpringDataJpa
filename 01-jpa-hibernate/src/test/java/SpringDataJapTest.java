@@ -1,6 +1,6 @@
 import com.liboshuai001.config.SpringDataJpaConfig;
 import com.liboshuai001.constant.enums.CustLevelEnum;
-import com.liboshuai001.dao.CustomerDao;
+import com.liboshuai001.dao.CustomerRepository;
 import com.liboshuai001.entity.CustomerEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class SpringDataJapTest {
 
     @Autowired
-    private CustomerDao customerDao;
+    private CustomerRepository customerRepository;
 
     /**
      * 保存客户：调用 save(obj) 方法
@@ -29,7 +29,7 @@ public class SpringDataJapTest {
                 .custLevel(CustLevelEnum.MEDIUM.getCode())
                 .custSource("58同城")
                 .build();
-        customerDao.save(build);
+        customerRepository.save(build);
     }
 
     /**
@@ -40,11 +40,11 @@ public class SpringDataJapTest {
     @Test
     public void testUpdate() {
         // 根据 id 查询客户
-        CustomerEntity customerDaoOne = customerDao.findOne(3L);
+        CustomerEntity customerDaoOne = customerRepository.findOne(3L);
         // 修改客户名称
         customerDaoOne.setCustName("测试修改客户名称");
         // 更新操作
-        customerDao.save(customerDaoOne);
+        customerRepository.save(customerDaoOne);
     }
 
     /**
@@ -52,7 +52,7 @@ public class SpringDataJapTest {
      */
     @Test
     public void testDelete() {
-        customerDao.delete(4L);
+        customerRepository.delete(4L);
     }
 
     /**
@@ -60,7 +60,7 @@ public class SpringDataJapTest {
      */
     @Test
     public void testFindById() {
-        CustomerEntity customerEntity = customerDao.findOne(5L);
+        CustomerEntity customerEntity = customerRepository.findOne(5L);
         System.out.println(customerEntity);
     }
 }
