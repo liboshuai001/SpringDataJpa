@@ -21,11 +21,38 @@
         <mysql-connector-java.verson>5.1.22</mysql-connector-java.verson>
         <lombok.version>1.18.22</lombok.version>
         <spring.version>4.2.4.RELEASE</spring.version>
+        <spring-data-jpa.version>1.9.0.RELEASE</spring-data-jpa.version>
+        <spring-test.version>4.2.4.RELEASE</spring-test.version>
+        <javax.el-api.version>2.2.4</javax.el-api.version>
+        <javax.el.version>2.2.4</javax.el.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
+        <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
         <slf4j.version>1.6.6</slf4j.version>
         <log4j.version>1.2.12</log4j.version>
         <c3p0.version>0.9.1.2</c3p0.version>
         <mysql.version>5.1.6</mysql.version>
-
+        <spring-boot.version>2.4.4</spring-boot.version>
+        <slf4j.version>2.0.0-alpha5</slf4j.version>
+        <lombok.version>1.18.24</lombok.version>
+        <junit.version>4.9</junit.version>
+        <aspectj.version>1.6.8</aspectj.version>
     </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

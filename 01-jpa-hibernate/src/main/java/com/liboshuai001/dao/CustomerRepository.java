@@ -57,4 +57,55 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>,
     int deleteCustomerEntitiesByCustNameLike(String custName);
 
     // JPQL 不支持普通的插入insert，只支持先查询出来，然后插入的方式，而且还是会提示报错
+
+    /**
+     * 使用 原生SQL 方式，根据 客户来源 查询 客户信息
+     *
+     * @param custSource 客户来源
+     * @return 查询的客户信息
+     */
+    @Query(value = "SELECT * FROM cst_customer WHERE cust_source = :custSource", nativeQuery = true)
+    List<CustomerEntity> findCustomerEntitiesByCustSource(@Param(value = "custSource") String custSource);
+
+    /**
+     * 使用 原生SQL 方式，设置指定 客户id 的 客户名称
+     *
+     * @param custName 客户名称
+     * @param id       客户id
+     * @return 更新影响的数据行数
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE cst_customer SET cust_name = ?1 WHERE id = ?2", nativeQuery = true)
+    int updateCustomerEntitiesById(String custName, Long id);
+
+    /**
+     * 使用 原生SQL 方式，删除指定客户id的客户信息
+     *
+     * @param id 客户id
+     * @return 删除影响的数据行数
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM cst_customer WHERE id = :id", nativeQuery = true)
+    int deleteCustomerEntityById(@Param("id") Long id);
+
+    /**
+     * 使用 原生SQL，插入指定客户信息
+     *
+     * @param custName     客户名称
+     * @param custSource   客户来源
+     * @param custIndustry 客户所属行业
+     * @param custLevel    客户级别
+     * @param custAddress  客户联系地址
+     * @param custPhone    客户联系电话
+     * @return 插入的数据行数
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO cst_customer (cust_name, cust_source, cust_industry, cust_level, cust_address, cust_phone) " +
+            "VALUES (:custName, :custSource, :custIndustry, :custLevel, :custAddress, :custPhone);", nativeQuery = true)
+    int insertCustomerEntity(@Param(value = "custName") String custName, @Param(value = "custSource") String custSource,
+                             @Param(value = "custIndustry") String custIndustry, @Param(value = "custLevel") String custLevel,
+                             @Param(value = "custAddress") String custAddress, @Param(value = "custPhone") String custPhone);
 }

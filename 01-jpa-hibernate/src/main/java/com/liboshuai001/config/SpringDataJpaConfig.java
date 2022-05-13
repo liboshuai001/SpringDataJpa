@@ -28,7 +28,7 @@ public class SpringDataJpaConfig {
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-        comboPooledDataSource.setJdbcUrl("jdbc:mysql://81.68.182.114:3307/jpa?useUnicode=true&amp;characterEncoding=utf-8");
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://81.68.182.114:3307/jpa?characterEncoding=utf-8");
         return comboPooledDataSource;
     }
 
