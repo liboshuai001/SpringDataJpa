@@ -2,6 +2,7 @@ import com.liboshuai001.config.SpringDataJpaConfig;
 import com.liboshuai001.constant.enums.CustLevelEnum;
 import com.liboshuai001.dao.CustomerRepository;
 import com.liboshuai001.entity.CustomerEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringDataJpaConfig.class)
 public class SpringDataJpaNativeSQLTest {
@@ -53,4 +55,5 @@ public class SpringDataJpaNativeSQLTest {
                 CustLevelEnum.HIGH.getCode(), "HeNan", "13580646357");
         System.out.println("插入的数据行数：" + result);
     }
+
 }

@@ -108,4 +108,70 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>,
     int insertCustomerEntity(@Param(value = "custName") String custName, @Param(value = "custSource") String custSource,
                              @Param(value = "custIndustry") String custIndustry, @Param(value = "custLevel") String custLevel,
                              @Param(value = "custAddress") String custAddress, @Param(value = "custPhone") String custPhone);
+
+    /**
+     * 方法命名规则查询方式，根据 客户名称 查询客户信息
+     * 关键字：findBy，根据指定条件查询
+     *
+     * @param custName 客户名称
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByCustName(String custName);
+
+    /**
+     * 方法命名规则查询方式，根据客户名称查询客户信息并去重
+     * 关键字：Distinct，去重
+     *
+     * @param custName 客户名称
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findDistinctByCustName(String custName);
+
+    /**
+     * 方法命名规则查询方式，根据客户名称和客户级别查询客户信息
+     * 关键字：And，合并查询条件
+     *
+     * @param custName  客户名称
+     * @param custLevel 客户级别
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByCustNameAndCustLevel(String custName, String custLevel);
+
+    /**
+     * 方法命名规则查询方式，根据客户名称或客户级别查询客户信息
+     * 关键字：Or，或者查询条件
+     *
+     * @param custName    客户名称
+     * @param custAddress 客户联系地址
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByCustNameOrCustAddress(String custName, String custAddress);
+
+    /**
+     * 方法命名规则查询方式，根据客户名称查询客户信息
+     * 关键字：Is，与之间findByCustName一致
+     *
+     * @param custName 客户名称
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByCustNameIs(String custName);
+
+    /**
+     * 方法命名规则查询方式，根据客户名称查询客户信息
+     * 关键字：Equals，与之间findByCustName一致
+     *
+     * @param custName 客户名称
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByCustNameEquals(String custName);
+
+    /**
+     * 方法命名规则查询方式，根据客户id区间查询客户信息
+     * 关键字：Between，值1与值2之间（前闭后开）
+     *
+     * @param starId 开始id
+     * @param endId  结束id
+     * @return 查询到的客户信息
+     */
+    List<CustomerEntity> findByIdBetween(Long starId, Long endId);
 }
